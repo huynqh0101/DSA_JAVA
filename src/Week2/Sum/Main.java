@@ -1,11 +1,7 @@
 package Week2.Sum;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdArrayIO;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
    public static void main(String[] args) {
@@ -22,6 +18,8 @@ public class Main {
             }
         }
         */
+
+
 
       //Sum3: C1: for đến chết: O(n^3)
         /*

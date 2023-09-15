@@ -2,73 +2,64 @@ package Week2;
 
 import java.util.Scanner;
 
+
 public class UFClient2 {
-    private int[] parent;
-    private int[] size;
+    private static int[] root;
 
-    public UFClient2(int N) {
-        parent = new int[N];
-        size = new int[N];
-        for (int i = 0; i < N; i++) {
-            parent[i] = i;
-            size[i] = 1;
-        }
-    }
-
-    public int find(int p) {
-        while (p != parent[p]) {
-            parent[p] = parent[parent[p]]; // Path compression
-            p = parent[p];
-        }
-        return p;
-    }
-
-    public boolean connected(int p, int q) {
-        return find(p) == find(q);
-    }
-
-    public void union(int p, int q) {
-        int rootP = find(p);
-        int rootQ = find(q);
-
-        if (rootP == rootQ) return; // Already connected
-
-        if (size[rootP] < size[rootQ]) {
-            parent[rootP] = rootQ;
-            size[rootQ] += size[rootP];
+    private static void union(int x, int y) {
+        x = getRoot(x);
+        y = getRoot(y);
+        if (root[x] < root[y]) {
+            int size_x = root[x];
+            int size_y = root[y];
+            root[y] = x;
+            root[x] = size_x + size_y;
         } else {
-            parent[rootQ] = rootP;
-            size[rootP] += size[rootQ];
+            int size_x = root[x];
+            int size_y = root[y];
+            root[x] = y;
+            root[y] = size_x + size_y;
         }
+    }
+
+    private static int getRoot(int x) {
+        if (root[x] < 0) return x;
+        return root[x] = getRoot(root[x]);
+    }
+
+    private static boolean connected(int x, int y) {
+        int u = getRoot(x);
+        int v = getRoot(y);
+        return u == v;
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int N = scanner.nextInt();
-        UFClient2 uf = new UFClient2(N);
-        int Count = N;
-        int pairNumber = 0;
-
-        while (scanner.hasNext()) {
-            int p = scanner.nextInt();
-            int q = scanner.nextInt();
-            pairNumber++;
-
-            if (p < 0 || p >= N || q < 0 || q >= N) {
-                System.out.println("FAILED");
-                return;
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        root = new int[n + 5];
+        int cnt = 0, cnt2 = 0;
+        int connected_components = n;
+        boolean ktra = true;
+        for (int i = 0; i < n; i++) {
+            root[i] = -1;
+        }
+        while (sc.hasNextInt()) {
+            cnt++;
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            if (!connected(x, y)) {
+                union(x, y);
+                connected_components--;
             }
-
-            if (!uf.connected(p, q)) {
-                uf.union(p, q);
-                Count--;
-            }
-
-            if (Count == 1) {
-                System.out.println(pairNumber);
+            if (connected_components == 1 && ktra == true) {
+                cnt2 = cnt;
+                ktra = false;
             }
         }
-
-        System.out.println("FAILED");
+        if (connected_components > 1) {
+            System.out.println("FAILED");
+        } else {
+            System.out.println(cnt2);
+        }
     }
 }
