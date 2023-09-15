@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class ThreeSumRepair {
     public static void main(String[] args) {
-        In in = new In("C:\\Users\\vanh2\\IdeaProjects\\DSA\\src\\week2\\sum\\2Kints.txt");
+        In in = new In("C:\\Users\\Huy\\IdeaProjects\\DSA2\\src\\Week2\\Sum\\4Kints.txt");
         long[] a = in.readAllLongs();
 
         Arrays.sort(a);
