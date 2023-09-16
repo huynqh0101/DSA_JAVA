@@ -53,3 +53,21 @@
 1.4.8:Sort:
 1.4.10: Binary Search:
 1.4.12: Số cùng xuất hiện ở 2 mảng
+1.4.26:
+        1Tạo các đường thẳng thông qua các cặp điểm:
+
+        Bước đầu tiên là tạo tất cả các đường thẳng có thể đi qua cặp điểm trong mảng arr.
+        Điều này đòi hỏi ta phải duyệt qua mọi cặp điểm trong mảng và tính góc nghiêng của đường thẳng qua cặp điểm đó.
+
+        2Kiểm tra điểm thứ ba:
+
+        Sau khi tạo đường thẳng, ta kiểm tra xem có bất kì điểm nào khác trong mảng arr nằm trên đường thẳng này không.
+        Nếu có ít nhất một điểm nằm trên đường thẳng, thì ta đã tìm thấy một bộ ba số thỏa mãn bài toán 3-sum.
+        
+        3Lặp qua tất cả các cặp điểm:
+
+        Bây giờ, ta lặp qua tất cả các cặp điểm trong mảng và thực hiện các bước 1 và 2 cho mỗi cặp điểm. 
+        Nếu ta tìm thấy ít nhất một bộ ba số thỏa mãn bài toán 3-sum trong bất kì cặp điểm nào, ta sẽ trả về bộ ba số đó.
+      Kết quả:
+      Nếu sau khi duyệt qua tất cả các cặp điểm mà ta không tìm thấy bất kì bộ ba số nào thỏa mãn bài toán 3-sum,
+      ta sẽ kết luận rằng không có bộ ba số nào thỏa mãn điều kiện đó trong mảng arr.

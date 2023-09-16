@@ -2,6 +2,7 @@ package Week3.BTVN;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
+//Bài 1.4.10
 
 public class BinarySearch {
     public static int binarySearch(int[] arr, int key) {
