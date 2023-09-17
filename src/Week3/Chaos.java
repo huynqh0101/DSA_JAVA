@@ -11,16 +11,16 @@ public class Chaos {
         int bribes = 0;
 
         for (int i = q.size() - 1; i >= 0; i--) {
-            int firstPosition = q.get(i);
+            int firstPos = q.get(i);
 
 
-            if (firstPosition - (i + 1) > 2) {
+            if (firstPos - (i + 1) > 2) {
                 System.out.println("Too chaotic");
                 return;
             }
 
-            for (int j = Math.max(0, firstPosition - 2); j < i; j++) {
-                if (q.get(j) > firstPosition) {
+            for (int j = Math.max(0, firstPos - 2); j < i; j++) {
+                if (q.get(j) > firstPos) {
                     bribes++;
                 }
             }
