@@ -1,7 +1,7 @@
 package Week4.Linker_List.Recursive;
 
 public class LinkedList<Item> {
-    Node head = null;
+    Node<Item> head = null;
 
     //Thêm một phần tử vào cuối danh sách theo hàm đệ quy
     public void append(Item data) {
