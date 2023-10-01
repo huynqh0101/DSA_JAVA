@@ -63,6 +63,7 @@ public class stackResize<T> {
         while (!stack.isEmpty()) {
             System.out.println(stack.pop());
         }
+        stack.resize(1);
         System.out.println(stack.getSize()+ "   huy");
     }
 }

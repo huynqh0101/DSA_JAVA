@@ -1,54 +1,90 @@
 package Week5.Queue;
 
-public class linkedQueue {
-    public Node first, last;
+public class linkedQueue<Item> {
+    private Node<Item> front; // Phần tử đầu hàng đợi
+    private Node<Item> rear;  // Phần tử cuối hàng đợi
+
+    public linkedQueue() {
+        this.front = null;
+        this.rear = null;
+    }
+
+    // Kiểm tra xem hàng đợi có trống không.
     public boolean isEmpty() {
-        return first == null;
+        return front == null;
     }
 
-    public void enqueue(String item) {
-        Node oldlast = last;
-        last = new Node();
-        last.item = item;
-        last.next = null;
-        if(isEmpty()) {
-            first = last;
+    // Thêm phần tử vào cuối hàng đợi.
+    public void enqueue(Item data) {
+        Node<Item> newNode = new Node<>(data);
+
+        if (rear == null) {
+            front = newNode;
+            rear = newNode;
         } else {
-            oldlast.next = last;
+            rear.next = newNode;
+            rear = newNode;
         }
     }
-    public String dequeue() {
-        String item = first.item;
-        first = first.next;
-        if(isEmpty()) {
-            last = null;
+
+    // Loại bỏ và trả về phần tử ở đầu hàng đợi.
+    public Item dequeue() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
         }
-        return item;
+
+        Item data = front.data;
+        front = front.next;
+
+        if (front == null) {
+            rear = null;
+        }
+
+        return data;
     }
-    public int resize() {
-        Node current = first;
-        int count = 0;
+
+    // Lấy phần tử ở đầu hàng đợi mà không loại bỏ.
+    public Item peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+
+        return front.data;
+    }
+
+    // Lấy kích thước của hàng đợi.
+    public int size() {
+        int size = 0;
+        Node<Item> current = front;
         while (current != null) {
+            size++;
             current = current.next;
-            count++;
         }
-        return count;
+        return size;
     }
-    public static void main(String[] args) {
-        linkedQueue queue = new linkedQueue();
-        
-        System.out.println("Hàng đợi rỗng? " + queue.isEmpty());
 
-        queue.enqueue("Phần tử 1");
-        queue.enqueue("Phần tử 2");
-        queue.enqueue("Phần tử 3");
-        System.out.println("Size: " + queue.resize());
-
-        while (!queue.isEmpty()) {
-            System.out.println("Phần tử được dequeue: " + queue.dequeue());
+    // In toàn bộ hàng đợi.
+    public void printQueue() {
+        Node<Item> current = front;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
         }
+        System.out.println();
+    }
 
-        // Kiểm tra xem hàng đợi có rỗng sau khi dequeue không
-        System.out.println("Hàng đợi rỗng sau khi dequeue? " + queue.isEmpty());
+    public static void main(String[] args) {
+        linkedQueue<Integer> queue = new linkedQueue<>();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        System.out.println("Queue:");
+        queue.printQueue();
+
+        System.out.println("Dequeue: " + queue.dequeue());
+        System.out.println("Peek: " + queue.peek());
+
+        System.out.println("Queue size: " + queue.size());
     }
 }
