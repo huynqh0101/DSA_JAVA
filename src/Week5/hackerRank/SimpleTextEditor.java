@@ -1,8 +1,7 @@
-package Week5.hackerRank.simpleTextEditor;
 import java.io.*;
 import java.util.*;
 
-class Solution {
+public class Solution {
 
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
@@ -56,8 +55,4 @@ class Solution {
         }
         scanner.close();
     }
-}
-
-
-public class simpletextEditor {
 }

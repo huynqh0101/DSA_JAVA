@@ -1,4 +1,3 @@
-package Week4.hackerRank.mergetwoSort;
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -7,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-class Solution {
+public class Solution {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -66,9 +65,12 @@ class Solution {
      */
     static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
         SinglyLinkedListNode mergedHead = new SinglyLinkedListNode(-1);
+
+
         SinglyLinkedListNode current = mergedHead;
-        while (head1 != null && head2!= null) {
-            if (head1.data < head2.data) {
+
+        while (head1 != null && head2 != null) {
+            if (head1.data <= head2.data) {
                 current.next = head1;
                 head1 = head1.next;
             } else {
@@ -77,11 +79,13 @@ class Solution {
             }
             current = current.next;
         }
-        if(head1 != null) {
+
+        if (head1 != null) {
             current.next = head1;
-        } else{
+        } else {
             current.next = head2;
         }
+
         return mergedHead.next;
     }
 
@@ -128,8 +132,4 @@ class Solution {
 
         scanner.close();
     }
-}
-
-
-public class mergeList {
 }

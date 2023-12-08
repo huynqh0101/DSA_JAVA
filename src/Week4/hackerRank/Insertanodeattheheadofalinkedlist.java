@@ -1,4 +1,3 @@
-package Week4.hackerRank.insertNode;
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -7,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-class Solution {
+public class Solution {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -21,9 +20,11 @@ class Solution {
 
     static class SinglyLinkedList {
         public SinglyLinkedListNode head;
+        public SinglyLinkedListNode tail;
 
         public SinglyLinkedList() {
             this.head = null;
+            this.tail = null;
         }
 
 
@@ -41,7 +42,7 @@ class Solution {
         }
     }
 
-    // Complete the insertNodeAtTail function below.
+    // Complete the insertNodeAtHead function below.
 
     /*
      * For your reference:
@@ -52,21 +53,10 @@ class Solution {
      * }
      *
      */
-    static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode llist, int data) {
         SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
-
-        if (head == null) {
-            return newNode;
-        }
-
-        SinglyLinkedListNode current = head;
-        while (current.next != null) {
-            current = current.next;
-        }
-
-        current.next = newNode;
-
-        return head;
+        newNode.next = llist;
+        return newNode;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -83,7 +73,7 @@ class Solution {
             int llistItem = scanner.nextInt();
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            SinglyLinkedListNode llist_head = insertNodeAtTail(llist.head, llistItem);
+            SinglyLinkedListNode llist_head = insertNodeAtHead(llist.head, llistItem);
 
             llist.head = llist_head;
         }
@@ -97,8 +87,4 @@ class Solution {
 
         scanner.close();
     }
-}
-
-
-public class insertNodelast {
 }

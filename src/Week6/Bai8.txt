@@ -1,0 +1,4 @@
+Việc sử dụng danh sách liên kết hoặc mảng cho cả hai thuật toán có thể hoạt động,
+nhưng sự lựa chọn phụ thuộc vào cụ thể của bài toán và yêu cầu hiệu suất. Nếu bạn
+cần thực hiện nhiều thao tác chèn hoặc tráo đổi, danh sách liên kết có thể là lựa chọn tốt hơn.
+Nếu bạn cần hiệu suất tốt hơn cho việc truy cập và thay đổi các phần tử theo chỉ số, mảng có thể là lựa chọn tốt hơn.

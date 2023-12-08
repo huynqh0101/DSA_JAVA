@@ -1,4 +1,3 @@
-package Week4.hackerRank.deleteNode;
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -60,12 +59,12 @@ class SinglyLinkedListPrintHelper {
 class Result {
 
     /*
-     * Complete the 'deleteNode' function below.
+     * Complete the 'getNode' function below.
      *
-     * The function is expected to return an INTEGER_SINGLY_LINKED_LIST.
+     * The function is expected to return an INTEGER.
      * The function accepts following parameters:
      *  1. INTEGER_SINGLY_LINKED_LIST llist
-     *  2. INTEGER position
+     *  2. INTEGER positionFromTail
      */
 
     /*
@@ -78,57 +77,60 @@ class Result {
      *
      */
 
-    public static SinglyLinkedListNode deleteNode(SinglyLinkedListNode llist, int position) {
+    public static int getNode(SinglyLinkedListNode llist, int positionFromTail) {
         // Write your code here
-        if(position == 0) {
-            return llist.next;
+        SinglyLinkedListNode fast = llist;
+        SinglyLinkedListNode slow = llist;
+        int pos = 0;
+        while (pos < positionFromTail) {
+            fast = fast.next;
+            pos++;
         }
-        SinglyLinkedListNode current = llist;
-        int currentPosition = 0;
-        while(current.next != null && currentPosition < position - 1) {
-            current = current.next;
-            currentPosition++;
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
         }
-        if(current == null || current.next == null) {
-            return llist;
-        }
-        current.next = current.next.next;
-        return llist;
+        return slow.data;
+
     }
+
 }
 
-class Solution {
+public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        SinglyLinkedList llist = new SinglyLinkedList();
+        int tests = Integer.parseInt(bufferedReader.readLine().trim());
 
-        int llistCount = Integer.parseInt(bufferedReader.readLine().trim());
-
-        IntStream.range(0, llistCount).forEach(i -> {
+        IntStream.range(0, tests).forEach(testsItr -> {
             try {
-                int llistItem = Integer.parseInt(bufferedReader.readLine().trim());
+                SinglyLinkedList llist = new SinglyLinkedList();
 
-                llist.insertNode(llistItem);
+                int llistCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+                IntStream.range(0, llistCount).forEach(i -> {
+                    try {
+                        int llistItem = Integer.parseInt(bufferedReader.readLine().trim());
+
+                        llist.insertNode(llistItem);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+                int position = Integer.parseInt(bufferedReader.readLine().trim());
+
+                int result = Result.getNode(llist.head, position);
+
+                bufferedWriter.write(String.valueOf(result));
+                bufferedWriter.newLine();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
-        int position = Integer.parseInt(bufferedReader.readLine().trim());
-
-        SinglyLinkedListNode llist1 = Result.deleteNode(llist.head, position);
-
-        SinglyLinkedListPrintHelper.printList(llist1, " ", bufferedWriter);
-        bufferedWriter.newLine();
-
         bufferedReader.close();
         bufferedWriter.close();
     }
-}
-
-
-
-public class deleteList {
 }

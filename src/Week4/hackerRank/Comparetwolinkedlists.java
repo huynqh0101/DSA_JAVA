@@ -1,14 +1,10 @@
-package Week4.hackerRank.getNodevalue;
-
 import java.io.*;
 import java.math.*;
-import java.security.*;
 import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
 import java.util.regex.*;
 
-class Solution {
+public class Solution {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -54,44 +50,34 @@ class Solution {
         }
     }
 
-    class Result {
+    // Complete the compareLists function below.
 
-        /*
-         * Complete the 'getNode' function below.
-         *
-         * The function is expected to return an INTEGER.
-         * The function accepts following parameters:
-         *  1. INTEGER_SINGLY_LINKED_LIST llist
-         *  2. INTEGER positionFromTail
-         */
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static boolean compareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
 
-        /*
-         * For your reference:
-         *
-         * SinglyLinkedListNode {
-         *     int data;
-         *     SinglyLinkedListNode next;
-         * }
-         *
-         */
-    }
-
-    public static int getNode(SinglyLinkedListNode llist, int positionFromTail) {
-        // Write your code here
-        SinglyLinkedListNode fast = llist;
-        SinglyLinkedListNode slow = llist;
-        int pos = 0;
-        while (pos < positionFromTail) {
-            fast = fast.next;
-            pos++;
+        while (head1 != null && head2 != null) {
+            if (head1.data != head2.data) {
+                return false;
+            }
+            head1 = head1.next;
+            head2 = head2.next;
         }
-        while (fast.next != null) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        return slow.data;
-    }
 
+
+        if (head1 == null && head2 == null) {
+            return true;
+        }
+
+        return false;
+    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -102,24 +88,33 @@ class Solution {
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int testsItr = 0; testsItr < tests; testsItr++) {
-            SinglyLinkedList llist = new SinglyLinkedList();
+            SinglyLinkedList llist1 = new SinglyLinkedList();
 
-            int llistCount = scanner.nextInt();
+            int llist1Count = scanner.nextInt();
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            for (int i = 0; i < llistCount; i++) {
-                int llistItem = scanner.nextInt();
+            for (int i = 0; i < llist1Count; i++) {
+                int llist1Item = scanner.nextInt();
                 scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-                llist.insertNode(llistItem);
+                llist1.insertNode(llist1Item);
             }
 
-            int position = scanner.nextInt();
+            SinglyLinkedList llist2 = new SinglyLinkedList();
+
+            int llist2Count = scanner.nextInt();
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            int result = getNode(llist.head, position);
+            for (int i = 0; i < llist2Count; i++) {
+                int llist2Item = scanner.nextInt();
+                scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            bufferedWriter.write(String.valueOf(result));
+                llist2.insertNode(llist2Item);
+            }
+
+            boolean result = compareLists(llist1.head, llist2.head);
+
+            bufferedWriter.write(String.valueOf(result ? 1 : 0));
             bufferedWriter.newLine();
         }
 
