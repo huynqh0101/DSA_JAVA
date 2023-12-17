@@ -5,20 +5,20 @@ public class Solution {
 
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        Scanner scanner = new Scanner(System.in);
-        int Q = scanner.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int Q = sc.nextInt();
         String text = "";
-        Stack <String> oldVersion = new Stack<>();
+        Stack <String> st = new Stack<>();
 
         for (int i = 0; i < Q; i++) {
-            int request = scanner.nextInt();
-            switch (request) {
+            int re = sc.nextInt();
+            switch (re) {
                 case 1:
                 {
-                    oldVersion.push(text);
+                    st.push(text);
 
 
-                    String append = scanner.next();
+                    String append = sc.next();
                     text += append;
                     break;
                 }
@@ -27,10 +27,8 @@ public class Solution {
                 case 2:
                 {
 
-                    oldVersion.push(text);
-
-
-                    int k = scanner.nextInt();
+                    st.push(text);
+                    int k = sc.nextInt();
                     String newText = text.substring(0, text.length() - k);
                     text = newText;
                     break;
@@ -38,21 +36,21 @@ public class Solution {
 
                 case 3:
                 {
-                    int k = scanner.nextInt();
+                    int k = sc.nextInt();
                     System.out.println(text.charAt(k - 1));
                     break;
                 }
 
                 case 4:
                 {
-                    if (!oldVersion.isEmpty()) {
-                        String oldText = oldVersion.pop();
+                    if (!st.isEmpty()) {
+                        String oldText = st.pop();
                         text = oldText;
                     }
                     break;
                 }
             }
         }
-        scanner.close();
+        sc.close();
     }
 }

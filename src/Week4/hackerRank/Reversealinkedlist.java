@@ -56,7 +56,7 @@ class SinglyLinkedListPrintHelper {
     }
 }
 
-class Result {
+classResult {
 
     /*
      * Complete the 'reverse' function below.

@@ -42,7 +42,6 @@ class Result {
         }
 
         return stack.isEmpty() ? "YES" : "NO";
-
     }
 
 }

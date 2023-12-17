@@ -25,14 +25,14 @@ class Solution {
         Node right;
     */
     public static void levelOrder(Node root) {
-        Queue<Node> q = new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()) {
-            Node top = q.peek();
-            q.remove();
+        Queue<Node> qu = new LinkedList<>();
+        qu.add(root);
+        while(!qu.isEmpty()) {
+            Node top = qu.peek();
+            qu.remove();
             System.out.print(top.data + " ");
-            if(top.left != null) q.add(top.left);
-            if(top.right != null) q.add(top.right);
+            if(top.left != null) qu.add(top.left);
+            if(top.right != null) qu.add(top.right);
         }
     }
 

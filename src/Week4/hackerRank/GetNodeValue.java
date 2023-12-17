@@ -91,7 +91,6 @@ class Result {
             fast = fast.next;
         }
         return slow.data;
-
     }
 
 }
